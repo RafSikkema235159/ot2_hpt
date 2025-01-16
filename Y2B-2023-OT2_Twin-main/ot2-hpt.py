@@ -24,7 +24,7 @@ sweep_config = {
 }
 
 # Connect the dictionary to your CLEARML Task
-parameters_dict = Task.current_task().connect(parameters_dict)
+parameters_dict = Task.current_task().connect(sweep_config)
 
 #copy these lines exactly as they are
 #setting the base docker image
