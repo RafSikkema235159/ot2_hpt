@@ -8,12 +8,6 @@ from clearml import Task
 
 task = Task.init(project_name="Mentor Group E/Group DMRM", task_name="ppo-hpt")
 
-#copy these lines exactly as they are
-#setting the base docker image
-task.set_base_docker('deanis/2023y2b-rl:latest')
-#setting the task to run remotely on the default queue
-task.execute_remotely(queue_name="default")
-
 # Define sweep config
 sweep_config = {
     "method": "bayes",
@@ -28,6 +22,12 @@ sweep_config = {
 }
 
 sweep_id = wandb.sweep(sweep_config, project="sweep_for_weights")
+
+#copy these lines exactly as they are
+#setting the base docker image
+task.set_base_docker('deanis/2023y2b-rl:latest')
+#setting the task to run remotely on the default queue
+task.execute_remotely(queue_name="default")
 
 def main(config=None):
     run = wandb.init(config, sync_tensorboard=True)
