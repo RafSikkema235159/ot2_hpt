@@ -10,12 +10,12 @@ import tensorboard
 
 os.environ['WANDB_API_KEY'] = 'af1a6039f20199fa6afe8c2022dde72b137ba944'
 
-task = Task.init(project_name="Mentor Group E/Group DMRM", task_name="ppo-hpt")
+task = Task.init(project_name="Mentor Group E/Group DMRM", task_name="ppo-hpt_name")
 
 # Define sweep config
 sweep_config = {
     "method": "bayes",
-    "name": "sweep",
+    "name": "sweep_name",
     "metric": {"goal": "minimize", "name": "rollout/ep_len_mean"},
     "parameters": {
         "learning_rate": {"values": [0.0003, 0.0001, 0.00005, 0.0005, 0.00008]},
@@ -47,7 +47,7 @@ def main(config=None):
     # gamma = config.gamma 
 
     env = OT2Env()
-    env.reset()
+    env.reset(seed=42)
 
     model = PPO("MlpPolicy", env, learning_rate=learning_rate, verbose=1, tensorboard_log="./logs_final_hpt")
 
