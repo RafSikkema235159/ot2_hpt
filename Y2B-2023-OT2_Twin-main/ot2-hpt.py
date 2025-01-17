@@ -6,6 +6,7 @@ from stable_baselines3.common.callbacks import BaseCallback
 from ot2_wrapper_final import OT2Env
 from clearml import Task
 import typing_extensions
+import tensorboard
 
 os.environ['WANDB_API_KEY'] = 'af1a6039f20199fa6afe8c2022dde72b137ba944'
 
