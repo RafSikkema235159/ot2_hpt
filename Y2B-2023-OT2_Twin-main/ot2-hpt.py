@@ -27,14 +27,13 @@ sweep_config = {
 # Connect the dictionary to your CLEARML Task
 parameters_dict = Task.current_task().connect(sweep_config)
 
+sweep_id = wandb.sweep(parameters_dict, project="sweep_for_weights")
+
 #copy these lines exactly as they are
 #setting the base docker image
 task.set_base_docker('deanis/2023y2b-rl:latest')
 #setting the task to run remotely on the default queue
 task.execute_remotely(queue_name="default")
-
-
-sweep_id = wandb.sweep(parameters_dict, project="sweep_for_weights")
 
 def main(config=None):
     run = wandb.init(config, sync_tensorboard=True)
