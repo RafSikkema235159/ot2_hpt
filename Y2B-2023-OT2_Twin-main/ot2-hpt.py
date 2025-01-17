@@ -5,6 +5,7 @@ import wandb
 from stable_baselines3.common.callbacks import BaseCallback
 from ot2_wrapper_final import OT2Env
 from clearml import Task
+import typing_extensions
 
 os.getenv("WANDB_API_KEY")
 
