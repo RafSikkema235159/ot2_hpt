@@ -7,7 +7,7 @@ from ot2_wrapper_final import OT2Env
 from clearml import Task
 import typing_extensions
 
-os.getenv("WANDB_API_KEY")
+os.environ['WANDB_API_KEY'] = 'af1a6039f20199fa6afe8c2022dde72b137ba944'
 
 task = Task.init(project_name="Mentor Group E/Group DMRM", task_name="ppo-hpt")
 
@@ -27,13 +27,13 @@ sweep_config = {
 # Connect the dictionary to your CLEARML Task
 parameters_dict = Task.current_task().connect(sweep_config)
 
-sweep_id = wandb.sweep(parameters_dict, project="sweep_for_weights")
-
 #copy these lines exactly as they are
 #setting the base docker image
 task.set_base_docker('deanis/2023y2b-rl:latest')
 #setting the task to run remotely on the default queue
 task.execute_remotely(queue_name="default")
+
+sweep_id = wandb.sweep(parameters_dict, project="sweep_for_weights")
 
 def main(config=None):
     run = wandb.init(config, sync_tensorboard=True)
