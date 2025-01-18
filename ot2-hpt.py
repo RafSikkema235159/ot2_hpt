@@ -51,8 +51,8 @@ def main(config=None):
 
     model = PPO("MlpPolicy", env, learning_rate=learning_rate, verbose=1, device="cuda", tensorboard_log="./logs_final_hpt")
 
-    model.learn(total_timesteps=2_000_000, reset_num_timesteps=False)
+    model.learn(total_timesteps=2_500_000, reset_num_timesteps=False)
 
     run.finish()
 
-wandb.agent(sweep_id, main)
+wandb.agent(sweep_id, main, count=5)
