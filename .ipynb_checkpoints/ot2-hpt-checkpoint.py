@@ -49,7 +49,7 @@ def main(config=None):
     env = OT2Env()
     env.reset(seed=42)
 
-    model = PPO("MlpPolicy", env, learning_rate=learning_rate, verbose=1, device="gpu", tensorboard_log="./logs_final_hpt")
+    model = PPO("MlpPolicy", env, learning_rate=learning_rate, verbose=1, device="cuda", tensorboard_log="./logs_final_hpt")
 
     model.learn(total_timesteps=2_000_000, reset_num_timesteps=False)
 
