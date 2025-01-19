@@ -1,26 +1,26 @@
-import gym
+import gymnasium as gym
 from stable_baselines3 import PPO
 import os
 import wandb
 from stable_baselines3.common.callbacks import BaseCallback
-from ot2_wrapper_final import OT2Env
+from ot2_gym_wrapper import OT2Env
 from clearml import Task
 import typing_extensions
 import tensorboard
 
-os.environ['WANDB_API_KEY'] = 'af1a6039f20199fa6afe8c2022dde72b137ba944'
+os.environ['WANDB_API_KEY'] = 'e2424cc498b0bfce94a65893693a511407132b27'
 
-task = Task.init(project_name="Mentor Group E/Group DMRM", task_name="ppo-hpt_Denys")
+task = Task.init(project_name="Mentor Group E/Group DMRM", task_name="ppo-hpt_raf")
 
 # Define sweep config
 sweep_config = {
     "method": "bayes",
-    "name": "sweep_Denys",
+    "name": "sweep_raf",
     "metric": {"goal": "minimize", "name": "rollout/ep_len_mean"},
     "parameters": {
-        "learning_rate": {"values": [3e-4, 1e-4, 5e-4, 1e-3, 8e-5]},
+        # learning_rate": {"values": [3e-4, 1e-4, 5e-4, 1e-3, 8e-5]},
         # "n_steps": {"distribution": "int_uniform", "min": 128, "max": 512},
-        # "batch_size": {"distribution": "int_uniform", "min": 32, "max": 256},
+        "batch_size": {"distribution": "categorical", "values": [8, 16, 32, 64, 128]},
         # "gamma": {"distribution": "uniform", "min": 0.9, "max": 0.999},
     },
 }
@@ -41,15 +41,15 @@ def main(config=None):
 
     config = run.config
 
-    learning_rate = config.learning_rate 
+    # learning_rate = config.learning_rate 
     # n_steps = config.n_steps 
-    # batch_size = config.batch_size
+    batch_size = config.batch_size
     # gamma = config.gamma 
 
     env = OT2Env()
     env.reset(seed=42)
 
-    model = PPO("MlpPolicy", env, learning_rate=learning_rate, verbose=1, device="cuda", tensorboard_log="./logs_final_hpt")
+    model = PPO("MlpPolicy", env, batch_size=batch_size, verbose=1, device="cuda", tensorboard_log="./logs_final_hpt")
 
     model.learn(total_timesteps=2_500_000, reset_num_timesteps=False)
 

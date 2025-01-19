@@ -55,10 +55,7 @@ class OT2Env(gym.Env):
         ]
         return pipette_position
 
-    def reset(self, seed=None):
-        """
-        Reset the environment.
-        """
+    def reset(self, seed=None, options=None):
         # Set the random seed for reproducibility
         if seed is not None:
             np.random.seed(seed)
@@ -66,23 +63,12 @@ class OT2Env(gym.Env):
         # Reset the simulation environment
         self.sim.reset(num_agents=1)
 
-        # Verify joints dynamically
-        robot_id = self.sim.robotIds[0]  # Assuming only one robot is used
-        num_joints = p.getNumJoints(robot_id)
-        print(f"Robot {robot_id} has {num_joints} joints.")
-        for joint_index in range(num_joints):
-            joint_info = p.getJointInfo(robot_id, joint_index)
-            print(f"Joint {joint_index}: {joint_info}")
-
         # Set a random goal position
         self.goal_position = np.random.uniform(low=-1, high=1, size=(3,))
 
-        # Try to retrieve pipette position
-        try:
-            pipette_position = self.sim.get_pipette_position(robot_id)
-        except Exception as e:
-            print(f"Error retrieving pipette position: {e}. Using fallback calculation.")
-            pipette_position = self.calculate_pipette_position(robot_id)
+        # Assuming `robotId` is 0 for a single robot setup
+        robot_id = self.sim.robotIds[0]
+        pipette_position = self.sim.get_pipette_position(robot_id)  # Fetch pipette position
 
         # Combine the pipette position and goal position
         observation = np.concatenate([pipette_position, self.goal_position]).astype(np.float32)
@@ -90,7 +76,7 @@ class OT2Env(gym.Env):
         # Reset step counter
         self.steps = 0
 
-        return observation
+        return observation  # Only return the observation
 
     def step(self, action):
         """

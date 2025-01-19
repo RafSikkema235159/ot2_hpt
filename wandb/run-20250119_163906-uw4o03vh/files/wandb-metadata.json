@@ -1,0 +1,42 @@
+{
+  "os": "Windows-10-10.0.22631-SP0",
+  "python": "CPython 3.9.21",
+  "startedAt": "2025-01-19T15:39:06.649062Z",
+  "program": "c:\\Users\\RafSi\\OneDrive\\Documenten\\GitHub\\ot2_hpt\\task11.ipynb",
+  "codePath": "task11.ipynb",
+  "git": {
+    "remote": "https://github.com/RafSikkema235159/ot2_hpt.git",
+    "commit": "e36c7e03e29a393d15a428121ed9069935bc9bd7"
+  },
+  "email": "235159@buas.nl",
+  "root": "c:\\Users\\RafSi\\OneDrive\\Documenten\\GitHub\\ot2_hpt",
+  "host": "Rafs_Laptop",
+  "executable": "c:\\Users\\RafSi\\anaconda3\\envs\\y2_blockb\\python.exe",
+  "codePathLocal": "task11.ipynb",
+  "cpu_count": 8,
+  "cpu_count_logical": 16,
+  "gpu": "NVIDIA GeForce RTX 3070 Laptop GPU",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "485022306304",
+      "used": "390177861632"
+    }
+  },
+  "memory": {
+    "total": "16371519488"
+  },
+  "cpu": {
+    "count": 8,
+    "countLogical": 16
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+      "memoryTotal": "8589934592",
+      "cudaCores": 5120,
+      "architecture": "Ampere"
+    }
+  ],
+  "cudaVersion": "12.7"
+}

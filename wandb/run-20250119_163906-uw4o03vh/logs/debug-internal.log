@@ -1,0 +1,8 @@
+{"time":"2025-01-19T16:39:06.6506627+01:00","level":"INFO","msg":"stream: starting","core version":"0.19.4","symlink path":"c:\\Users\\RafSi\\OneDrive\\Documenten\\GitHub\\ot2_hpt\\wandb\\run-20250119_163906-uw4o03vh\\logs\\debug-core.log"}
+{"time":"2025-01-19T16:39:07.1516464+01:00","level":"INFO","msg":"created new stream","id":"uw4o03vh"}
+{"time":"2025-01-19T16:39:07.1521525+01:00","level":"INFO","msg":"stream: started","id":"uw4o03vh"}
+{"time":"2025-01-19T16:39:07.1521525+01:00","level":"INFO","msg":"handler: started","stream_id":"uw4o03vh"}
+{"time":"2025-01-19T16:39:07.1521525+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"uw4o03vh"}
+{"time":"2025-01-19T16:39:07.1521525+01:00","level":"INFO","msg":"sender: started","stream_id":"uw4o03vh"}
+{"time":"2025-01-19T16:39:07.4682549+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-01-19T16:39:07.8310426+01:00","level":"INFO","msg":"Pausing system monitor"}
