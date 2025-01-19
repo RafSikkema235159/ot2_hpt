@@ -67,7 +67,7 @@ class OT2Env(gym.Env):
         self.goal_position = np.random.uniform(low=-1, high=1, size=(3,))
 
         # Assuming `robotId` is 0 for a single robot setup
-        robot_id = self.sim.robotIds[0]
+        robot_id = self.sim.robotIds[0]  # Use the first robot's ID
         pipette_position = self.sim.get_pipette_position(robot_id)  # Fetch pipette position
 
         # Combine the pipette position and goal position
@@ -76,7 +76,8 @@ class OT2Env(gym.Env):
         # Reset step counter
         self.steps = 0
 
-        return observation  # Only return the observation
+        # Return only the observation
+        return observation
 
     def step(self, action):
         """

@@ -7,6 +7,8 @@ from ot2_gym_wrapper import OT2Env
 from clearml import Task
 import typing_extensions
 import tensorboard
+from stable_baselines3.common.monitor import Monitor
+from stable_baselines3.common.vec_env import DummyVecEnv
 
 os.environ['WANDB_API_KEY'] = 'e2424cc498b0bfce94a65893693a511407132b27'
 
@@ -36,6 +38,10 @@ task.execute_remotely(queue_name="default")
 
 sweep_id = wandb.sweep(parameters_dict, project="sweep_for_weights")
 
+# Create and wrap the OT2 environment for compatibility
+def make_env():
+    return Monitor(OT2Env(render=False, max_steps=1000))
+
 def main(config=None):
     run = wandb.init(config, sync_tensorboard=True)
 
@@ -46,8 +52,7 @@ def main(config=None):
     batch_size = config.batch_size
     # gamma = config.gamma 
 
-    env = OT2Env()
-    env.reset(seed=42)
+    env = DummyVecEnv([make_env])
 
     model = PPO("MlpPolicy", env, batch_size=batch_size, verbose=1, device="cuda", tensorboard_log="./logs_final_hpt")
 
