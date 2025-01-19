@@ -1,99 +1,133 @@
 # Robot Simulation Environment
 
-This project implements a simulation environment for controlling a pipette-handling robot. The environment is built using **PyBullet** for physics simulation and visualizes the robot interacting with specimen plates. The robot's motion can be controlled using velocity commands, and droplet placement functionality is included.
+This project implements a simulation environment for controlling a pipette-handling robot using **PyBullet**. The simulation models the robot's interactions with specimen plates, simulating movements, droplet placement, and visualizations.
 
 ---
 
 ## Features
-1. **Robot Creation and Movement**:
-   - Robots are created dynamically in a grid pattern.
-   - Controlled using velocity commands along the X, Y, and Z axes.
 
-2. **Droplet Simulation**:
-   - Droplets are simulated as spheres and can be placed on specimen plates.
-
-3. **Dynamic Textures**:
-   - Specimen plates are assigned randomized textures for added realism.
-
-4. **Collision Detection**:
-   - Detects and resolves collisions between the pipette, droplets, and specimen plates.
-
-5. **Visualization**:
-   - Includes a GUI for real-time visualization using PyBullet.
+- **Robot Creation and Movement**:
+  - Robots are dynamically created in a grid layout.
+  - Controlled using velocity commands along the X, Y, and Z axes.
+- **Droplet Simulation**:
+  - Simulates droplets as spheres and supports placement on specimen plates.
+- **Dynamic Textures**:
+  - Specimen plates are assigned randomized textures to enhance visual realism.
+- **Collision Detection**:
+  - Collision detection between pipettes, droplets, and specimen plates.
+- **Visualization**:
+  - Real-time GUI visualization with PyBullet for monitoring robot actions.
 
 ---
 
 ## Environment Setup
 
 ### Prerequisites
+
 - Python 3.8 or higher
 - Virtual environment (recommended)
 
 ### Installation
-Install the required dependencies:
+
+Install the required dependencies with:
 
 ```bash
 pip install pybullet numpy
-Dependencies
-Dependency	Description
-PyBullet	Physics engine for robot and environment simulation
-NumPy	Numerical computations for simulation logic
-Math	Standard library for trigonometric and mathematical functions
-Random	Standard library for random texture assignment
-OS	Standard library for handling file paths
-Repository Structure
-bash
-Kopiëren
-Bewerken
+```
+---
+
+# Repository Structure
+
+```bash
 .
 ├── sim_class.py              # Contains the Simulation class
-├── textures/                 # Folder with textures for specimen plates
+├── textures/                 # Folder containing specimen textures
 ├── README.md                 # Project documentation
-└── main_simulation.py        # Example script to run the simulation
-Running the Simulation
-Example Script
-To initialize the simulation and observe robot movements:
+└── main_simulation.py        # Script to run the simulation
+``` 
+---
 
-python
-Kopiëren
-Bewerken
+# Running the Simulation
+
+## Example Usage
+
+Use the following script to initialize the simulation, run the robot, and visualize its actions:
+
+```python
 from sim_class import Simulation
 
-# Initialize the simulation with 1 robot
+# Initialize the simulation with one robot
 sim = Simulation(num_agents=1, render=True)
 
-# Define actions for robot movement
+# Define robot actions
 velocity_x = 0.1
 velocity_y = 0.1
 velocity_z = 0.1
-drop_command = 0
+drop_command = 0  # Droplet placement command
 actions = [[velocity_x, velocity_y, velocity_z, drop_command]]
 
 # Run the simulation for 1000 steps
-sim.run(actions, num_steps=1000)
-This script will:
+sim.run(actions, num_steps=1000)`
+``` 
+---
 
-Launch the PyBullet GUI.
-Initialize one robot and a specimen plate.
-Move the pipette in the specified direction for 1000 steps.
-Working Envelope of the Pipette
+# Working Envelope of the Pipette
+
 The pipette operates within the following 3D bounds:
 
 X-Axis: [-0.5, 0.5] meters
 Y-Axis: [-0.5, 0.5] meters
 Z-Axis: [0.03, 1.0] meters
-These bounds ensure the pipette operates safely without exceeding physical constraints.
+These bounds ensure the pipette's operations remain within its physical limits.
 
-Closing the Simulation
-To close the simulation after execution, ensure you call:
+---
 
-python
-Kopiëren
-Bewerken
+# Closing the Simulation
+
+Always call sim.close() after running the simulation to ensure PyBullet disconnects properly:
+
+```python
 sim.close()
-This will disconnect the PyBullet simulation and free resources.
+``` 
+---
 
-Notes
-If the simulation appears blank or unresponsive, check that the textures folder is correctly populated and paths are correctly referenced.
-Adjust the velocity values in the actions array to control the robot's movement.
-Droplets are simulated as red spheres and appear on the plates when placed.
+# Dependencies
+
+This project relies on the following libraries:
+
+PyBullet: Physics engine for robot simulation
+NumPy: Used for numerical operations in the simulation
+Math: Python's standard library for mathematical functions
+Random: Randomization for textures
+OS: Python's library for file path handling
+
+Install dependencies via:
+
+```bash
+pip install pybullet numpy
+```
+---
+
+# Notes
+
+Texture Management: Ensure the textures directory is correctly populated with image files for specimen plates.
+Velocity Adjustment: Modify the velocity values in the actions array to control the robot's movement speed.
+Droplet Simulation: Droplets are represented as red spheres placed on specimen plates when the drop command is triggered.
+
+---
+
+# Example Workflow
+
+```python
+# Step 1: Initialize Simulation
+sim = Simulation(num_agents=1, render=True)
+
+# Step 2: Define Actions
+actions = [[0.1, 0.1, 0.1, 0]]  # Move pipette with specified velocities
+
+# Step 3: Run Simulation
+sim.run(actions, num_steps=1000)
+
+# Step 4: Close Simulation
+sim.close()
+```
