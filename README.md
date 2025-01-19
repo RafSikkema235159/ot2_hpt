@@ -76,8 +76,11 @@ sim.run(actions, num_steps=1000)`
 The pipette operates within the following 3D bounds:
 
 X-Axis: [-0.5, 0.5] meters
+
 Y-Axis: [-0.5, 0.5] meters
+
 Z-Axis: [0.03, 1.0] meters
+
 These bounds ensure the pipette's operations remain within its physical limits.
 
 ---
@@ -96,9 +99,13 @@ sim.close()
 This project relies on the following libraries:
 
 PyBullet: Physics engine for robot simulation
+
 NumPy: Used for numerical operations in the simulation
+
 Math: Python's standard library for mathematical functions
+
 Random: Randomization for textures
+
 OS: Python's library for file path handling
 
 Install dependencies via:
@@ -111,7 +118,9 @@ pip install pybullet numpy
 # Notes
 
 Texture Management: Ensure the textures directory is correctly populated with image files for specimen plates.
+
 Velocity Adjustment: Modify the velocity values in the actions array to control the robot's movement speed.
+
 Droplet Simulation: Droplets are represented as red spheres placed on specimen plates when the drop command is triggered.
 
 ---
