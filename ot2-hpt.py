@@ -12,7 +12,7 @@ from stable_baselines3.common.vec_env import DummyVecEnv
 
 os.environ['WANDB_API_KEY'] = 'e2424cc498b0bfce94a65893693a511407132b27'
 
-task = Task.init(project_name="Mentor Group E/Group DMRM", task_name="ppo-hpt_raf")
+# task = Task.init(project_name="Mentor Group E/Group DMRM", task_name="ppo-hpt_raf")
 
 # Define sweep config
 sweep_config = {
@@ -32,9 +32,9 @@ parameters_dict = Task.current_task().connect(sweep_config)
 
 #copy these lines exactly as they are
 #setting the base docker image
-task.set_base_docker('deanis/2023y2b-rl:latest')
+# task.set_base_docker('deanis/2023y2b-rl:latest')
 #setting the task to run remotely on the default queue
-task.execute_remotely(queue_name="default")
+# task.execute_remotely(queue_name="default")
 
 sweep_id = wandb.sweep(parameters_dict, project="sweep_for_weights")
 
